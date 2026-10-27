@@ -1,0 +1,106 @@
+/* ===== Makara Café - edit this file to change the look ===== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+:root { --brown:#7A4A35; --brown-dark:#5E3727; --bg:#F3F2F7; --card:#fff; --muted:#8C8794; --chip:#F7EEE9; --line:#EDE9EF; }
+
+.stApp { background: var(--bg); }
+.stApp p, .stApp label, .stApp h1, .stApp h2, .stApp h3, .stApp button, .stApp input, .stApp a { font-family: 'Poppins', 'Source Sans', sans-serif; }
+.block-container { padding-top: 2.2rem; max-width: 1560px; }
+
+/* ---------- headings ---------- */
+.mk-h1 { font-size: 1.7rem; font-weight: 600; margin: 0; padding: .35rem 0 0; color: #221F26; }
+.mk-h2 { font-size: 1.15rem; font-weight: 600; margin: 0; padding: 0; color: #221F26; }
+.mk-h3 { font-size: 1rem; font-weight: 600; margin: 1.1rem 0 .5rem; color: #221F26; }
+.mk-muted { color: var(--muted); font-size: .85rem; }
+.mk-row { display: flex; justify-content: space-between; align-items: baseline; margin: .9rem 0 .4rem; }
+
+/* ---------- picture (4:3 tile or photo) ---------- */
+.mk-pic { aspect-ratio: 1 / 1; border-radius: 14px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.mk-pic img { width: 100%; height: 100%; object-fit: cover; }
+.mk-pic svg { width: 118%; height: auto; flex: none; filter: drop-shadow(0 4px 6px rgba(0,0,0,.16)); }
+.mk-tile--coffee { background: linear-gradient(135deg, #EAD7C0, #D9BC9A); }
+.mk-tile--tea    { background: linear-gradient(135deg, #E3EFD6, #C9DFB3); }
+.mk-tile--mango  { background: linear-gradient(135deg, #FFF0CF, #FFD98A); }
+.mk-tile--berry  { background: linear-gradient(135deg, #FDE3E8, #F7B8C4); }
+.mk-tile--bakery { background: linear-gradient(135deg, #FBE8CF, #F2CC9B); }
+.mk-tile--water  { background: linear-gradient(135deg, #DCEFFB, #B9DDF5); }
+.mk-tile--plain  { background: #F5EFE6; }
+
+/* ---------- menu card ---------- */
+[class*="st-key-card_"] { background: var(--card); border-radius: 18px; padding: 1rem; box-shadow: 0 2px 14px rgba(60,40,30,.05);
+                          transition: transform .15s ease, box-shadow .15s ease; gap: .8rem; }
+[class*="st-key-card_"]:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(111,78,55,.15); }
+.mk-item { display: flex; gap: 1rem; align-items: stretch; }
+.mk-item .mk-pic { width: 112px; min-width: 112px; height: 112px; }
+.mk-info { display: flex; flex-direction: column; justify-content: center; gap: .15rem; min-width: 0; }
+.mk-name { font-weight: 600; font-size: 1.02rem; line-height: 1.25; color: #221F26; }
+.mk-desc { font-size: .78rem; color: var(--muted); line-height: 1.35; }
+.mk-price { font-weight: 700; font-size: 1.15rem; color: #221F26; margin-top: .2rem; }
+.mk-price sup { font-size: .6rem; margin-right: 1px; }
+.mk-stock { font-size: .72rem; color: var(--muted); }
+[class*="st-key-card_"] button { width: 100%; border-radius: 12px; padding: .55rem 0; }
+
+/* ---------- bills panel ---------- */
+.mk-profile { display: flex; gap: .9rem; align-items: center; background: var(--card); border-radius: 18px; padding: .8rem 1rem;
+              box-shadow: 0 6px 24px rgba(60,40,30,.08); margin-bottom: 1rem; }
+.mk-avatar { width: 46px; height: 46px; border-radius: 12px; background: var(--brown); color: #fff; display: flex; align-items: center;
+             justify-content: center; font-weight: 600; font-size: 1.2rem; }
+.mk-uname { font-weight: 600; color: #221F26; }
+.st-key-bills { background: var(--card); border-radius: 18px; padding: 1.2rem; box-shadow: 0 2px 14px rgba(60,40,30,.05); }
+.mk-empty { text-align: center; color: var(--muted); font-size: .85rem; padding: 1.2rem 0; }
+.mk-bill { display: flex; gap: .7rem; align-items: center; }
+.mk-bill .mk-pic { width: 52px; min-width: 52px; height: 52px; border-radius: 10px; }
+.mk-bname { font-weight: 500; font-size: .9rem; line-height: 1.2; color: #221F26; }
+.mk-bprice { font-size: .85rem; color: var(--muted); }
+.mk-sum, .mk-total { display: flex; justify-content: space-between; font-size: .9rem; padding: .25rem 0; color: #4B4752; }
+.mk-total { font-weight: 700; font-size: 1.05rem; color: #221F26; border-top: 2px dashed var(--line); margin-top: .5rem; padding-top: .7rem; }
+
+/* ---------- primary buttons = brown ---------- */
+button[kind="primary"], button[data-testid="stBaseButton-primary"] { background: var(--brown); border-color: var(--brown); color: #fff; font-weight: 600; }
+button[kind="primary"]:hover, button[data-testid="stBaseButton-primary"]:hover { background: var(--brown-dark); border-color: var(--brown-dark); color: #fff; }
+.st-key-bills button[data-testid="stBaseButton-primary"] { width: 100%; padding: .7rem 0; border-radius: 14px; margin-top: .6rem; }
+
+/* cart + bills panel stays on screen while the menu scrolls */
+div[data-testid="stColumn"]:has(#cart-anchor), div[data-testid="column"]:has(#cart-anchor) {
+    position: sticky; top: 3.5rem; align-self: flex-start; max-height: calc(100vh - 4.5rem); overflow-y: auto; }
+
+/* ======== refinements ======== */
+.stApp .mk-h1 { font-size: 1.6rem !important; font-weight: 600 !important; margin: 0 !important; padding: .3rem 0 0 !important; line-height: 1.2 !important; }
+.stApp .mk-h2 { font-size: 1.1rem !important; font-weight: 600 !important; margin: 0 !important; padding: 0 !important; line-height: 1.3 !important; }
+.stApp .mk-h3 { font-size: 1rem !important; font-weight: 600 !important; margin: 1.1rem 0 .5rem !important; padding: 0 !important; }
+[data-testid="stHeader"] { background: transparent; }
+
+/* search box */
+[data-testid="stTextInputRootElement"] { background: #fff; border-radius: 14px; border: 1px solid transparent; box-shadow: 0 2px 10px rgba(60,40,30,.05); }
+[data-testid="stTextInputRootElement"] input { padding: .55rem .9rem; }
+
+/* category chips -> small cards: icon on top, name below */
+.st-key-cats [role="radiogroup"] { gap: .7rem; flex-wrap: wrap; }
+.st-key-cats button { flex-direction: column; width: 92px; height: 82px; padding: 0; border-radius: 16px; background: #fff; border: 1.5px solid var(--line);
+                      box-shadow: 0 2px 10px rgba(60,40,30,.04); transition: all .15s; }
+.st-key-cats button > div, .st-key-cats button > div > span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .25rem; }
+.st-key-cats button p { font-size: .8rem; color: #4B4752; margin: 0; }
+.st-key-cats button [data-testid="stIconMaterial"] { font-size: 1.7rem; color: var(--brown); }
+.st-key-cats button[data-selected="true"] { background: var(--chip); border-color: #B98A74; }
+.st-key-cats button:hover { border-color: #B98A74; transform: translateY(-2px); }
+
+/* payment method tiles */
+.st-key-pay [role="radiogroup"] { gap: .6rem; flex-wrap: wrap; }
+.st-key-pay button { flex-direction: column; min-width: 92px; height: 74px; padding: .4rem .6rem; border-radius: 14px; background: #F6F3F4; border: 1.5px solid transparent; }
+.st-key-pay button > div, .st-key-pay button > div > span { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .2rem; }
+.st-key-pay button p { font-size: .75rem; margin: 0; color: #6B6670; }
+.st-key-pay button [data-testid="stIconMaterial"] { font-size: 1.5rem; color: #8C8794; }
+.st-key-pay button[data-selected="true"] { background: var(--chip); border-color: #B98A74; }
+.st-key-pay button[data-selected="true"] p, .st-key-pay button[data-selected="true"] [data-testid="stIconMaterial"] { color: var(--brown); }
+
+/* add button: full width, a little air above it */
+[class*="st-key-card_"] [data-testid="stButton"], [class*="st-key-card_"] [data-testid="stElementContainer"]:has(button) { width: 100%; margin-top: .55rem; }
+[class*="st-key-card_"] button { width: 100%; border-radius: 12px; padding: .6rem 0; }
+.st-key-bills [data-testid="stElementContainer"]:has(button[data-testid="stBaseButton-primary"]), .st-key-bills [data-testid="stButton"] { width: 100%; }
+.st-key-bills button[data-testid="stBaseButton-primary"] { width: 100%; }
+
+/* sidebar */
+[data-testid="stSidebar"] { background: #fff; box-shadow: 4px 0 24px rgba(60,40,30,.04); }
+[data-testid="stSidebarNavLink"] { border-radius: 14px; padding: .6rem .8rem; margin-bottom: .25rem; }
+[data-testid="stSidebarNavLink"][aria-current="page"] { background: var(--brown); }
+[data-testid="stSidebarNavLink"][aria-current="page"] * { color: #fff !important; }
